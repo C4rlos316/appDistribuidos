@@ -17,13 +17,14 @@
 			}
 		}
 	},
-	"forwardPorts": [3000],
+	"forwardPorts": [
+		3000
+	],
 	"portsAttributes": {
 		"3000": {
 			"label": "NextJs App",
 			"protocol": "http"
 		}
 	},
-"postStartCommand": "cd /workspaces/app/bookshelf-ui && npm run dev"
-                
+	"postStartCommand": "cd /workspaces/app/bookshelf-ui && npm run dev"
 }

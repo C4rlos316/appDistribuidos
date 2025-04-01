@@ -1,5 +1,5 @@
 "use client";
-import { Paper } from "@mui/material";
+import { Paper, Typography } from "@mui/material";
 import BookRowActions from "./BookRowActions";
 import { DataGrid } from "@mui/x-data-grid";
 
@@ -44,6 +44,14 @@ const BookDataGrid = ({ books }) => {
           "& .MuiDataGrid-row:hover": { backgroundColor: "#f5f5f5" },
           "& .MuiDataGrid-footerContainer": { backgroundColor: "f1f1f1" },
         }}
+        slots={{
+          noRowsOverlay: () => (
+            <Box sx={{ padding: 2, textAlign: 'center' }}>
+              <Typography variant="body1" color='text.secondary' > No books found</Typography>
+            </Box>
+          )
+        }}
+
       />
     </Paper>
   );
