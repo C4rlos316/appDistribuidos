@@ -4,9 +4,12 @@ import BookRowActions from "./BookRowActions";
 import { DataGrid } from "@mui/x-data-grid";
 
 
-const BookDataGrid = ({ books }) => {
-  //Aqui no se si quedo bien asi
-  const renderActions = (params) => <BookRowActions params={params} />;
+const BookDataGrid = ({ books, handleBook, handleOpen }) => {
+
+  const renderActions = (params) =>
+    <BookRowActions params={params}
+      handleBook={handleBook}
+      handleOpen={handleOpen} />;
 
 
   //Esto se usa para dataGrid

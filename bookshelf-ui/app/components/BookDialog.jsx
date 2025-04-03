@@ -1,8 +1,7 @@
 import { Button, Dialog, DialogActions, DialogContent, DialogTitle, TextField } from "@mui/material";
-import { create } from "@mui/material/styles/createTransitions";
 import ManageBooks from "../services/ManageBooks";
 
-const BookDialog = ({ open, handleClose, handleBook, book, books, handleBooks }) => {
+const BookDialog = ({ open, handleClose, handleBook, book, books, handleBooks, handleAlert, updateBook }) => {
 
     const handleChange = (event) => {
         handleBook({
@@ -11,11 +10,13 @@ const BookDialog = ({ open, handleClose, handleBook, book, books, handleBooks })
     };
 
     const { createBook } = ManageBooks();
+    console.log('Flag:', book);
+    const isEditing = book?.id !== undefined;
 
     return (
         <Dialog open={open} onClose={handleClose}>
             <DialogTitle>
-                Add Book
+                {isEditing ? "Update Book" : "Create Book"}
             </DialogTitle>
             <DialogContent>
                 {/* Verifica que `book` esté definido */}
@@ -61,10 +62,14 @@ const BookDialog = ({ open, handleClose, handleBook, book, books, handleBooks })
                     Cancel
                 </Button>
                 <Button
-                    onClick={() => createBook({ book, books, handleBooks, handleClose })}
+                    onClick={() =>
+
+                        isEditing
+                            ? updateBook({ selectedBook: book, books, book, handleBooks, handleClose, handleAlert })
+                            : createBook({ book, books, handleBooks, handleClose, handleAlert })}
                     color="primary"
                 >
-                    Create
+                    {isEditing ? "Update" : "Create"}
                 </Button>
             </DialogActions>
         </Dialog>

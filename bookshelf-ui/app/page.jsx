@@ -9,7 +9,9 @@ import useBook from "./hooks/useBook";  // Para manejar el libro individual
 import BookDialog from "./components/BookDialog"; // Add this import
 
 import useDialog from "./hooks/useDialog";
-
+import BookNotifications from "./components/BookNotifications";
+import useAlert from "./hooks/useAlert";
+import ManageBooks from "./services/ManageBooks"; // Import the ManageBooks service
 export default function Home() {
   const { books, handleBooks } = useBooks();
 
@@ -17,6 +19,10 @@ export default function Home() {
 
   const { book, handleBook } = useBook();
 
+  const { open: openAlert, alert, handleAlert: handleOpenAlert, handleClose: handleCloseAlert } = useAlert();
+
+
+  const { updateBook } = ManageBooks(); // Ahora sí se ejecuta
 
   return (
 
@@ -35,18 +41,42 @@ export default function Home() {
           startIcon={<Add />}
           variant='contained'
           onClick={() => {
+            handleBook({
+              id: undefined,
+              title: '',
+              author: '',
+              year: '',
+              edition: ''
+            }); // Reset the book state
             handleOpen();
+            //handleOpenAlert({ message: '', severity: '' });
           }
           }
         > Add Book </Button>
 
       </Box>
-      <BookDataGrid books={books} />;
+      <BookDataGrid
+
+        books={books}
+        handleBook={handleBook}
+        handleOpen={handleOpen} />;
       <BookDialog open={open} handleClose={handleClose}
         book={book}
         handleBook={handleBook}
         books={books}
-        handleBooks={handleBooks} />
+        handleBooks={handleBooks}
+        handleAlert={handleOpenAlert}
+        //createBook={createBook}
+        updateBook={updateBook}
+
+      />
+
+
+      <BookNotifications
+        open={openAlert}
+        handleClose={handleCloseAlert}
+        alert={alert}
+      />
 
     </Container>
   );
