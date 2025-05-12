@@ -1,5 +1,3 @@
-
-
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
 import ChatBubbleOutlineIcon from '@mui/icons-material/ChatBubbleOutline';
 import WorkOutlineIcon from '@mui/icons-material/WorkOutline';
@@ -10,15 +8,15 @@ import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import YouTubeIcon from '@mui/icons-material/YouTube';
 
 export const cards = [
-    { icon: HelpOutlineIcon, title: 'Help Center' },
-    { icon: ChatBubbleOutlineIcon, title: 'Blog' },
-    { icon: WorkOutlineIcon, title: 'Careers' },
-    { icon: CodeIcon, title: 'Developer Area' },
+  { icon: HelpOutlineIcon, title: 'Help Center' },
+  { icon: ChatBubbleOutlineIcon, title: 'Blog' },
+  { icon: WorkOutlineIcon, title: 'Careers' },
+  { icon: CodeIcon, title: 'Developer Area' },
 ];
 
 export const socialMedia = [
-    { icon: FacebookIcon, label: 'Facebook', hoverColor: '#3B5998' },
-    { icon: TwitterIcon, label: 'Twitter', hoverColor: '#1DA1F2' },
-    { icon: LinkedInIcon, label: 'LinkedIn', hoverColor: '#0077B5' },
-    { icon: YouTubeIcon, label: 'YouTube', hoverColor: '#FF0000' },
+  { icon: FacebookIcon, label: 'Facebook', hoverColor: '#3B5998' },
+  { icon: TwitterIcon, label: 'Twitter', hoverColor: '#1DA1F2' },
+  { icon: LinkedInIcon, label: 'LinkedIn', hoverColor: '#0077B5' },
+  { icon: YouTubeIcon, label: 'YouTube', hoverColor: '#FF0000' },
 ];

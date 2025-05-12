@@ -1,22 +1,27 @@
 'use client';
 import { Button, Container, Box } from '@mui/material';
-import BookDataGrid from "./components/BookDataGrid";
-import { Add } from "@mui/icons-material";
+import BookDataGrid from './components/BookDataGrid';
+import { Add } from '@mui/icons-material';
 
-import useBooks from "./hooks/useBooks";
-import useBook from "./hooks/useBook";
-import BookDialog from "./components/BookDialog";
+import useBooks from './hooks/useBooks';
+import useBook from './hooks/useBook';
+import BookDialog from './components/BookDialog';
 
-import useDialog from "./hooks/useDialog";
-import BookNotifications from "./components/BookNotifications";
-import useAlert from "./hooks/useAlert";
-import ManageBooks from "./services/ManageBooks";
+import useDialog from './hooks/useDialog';
+import BookNotifications from './components/BookNotifications';
+import useAlert from './hooks/useAlert';
+import ManageBooks from './services/ManageBooks';
 
 export default function Home() {
   const { books, handleBooks } = useBooks();
   const { open, handleOpen, handleClose } = useDialog();
   const { book, handleBook } = useBook();
-  const { open: openAlert, alert, handleAlert: handleOpenAlert, handleClose: handleCloseAlert } = useAlert();
+  const {
+    open: openAlert,
+    alert,
+    handleAlert: handleOpenAlert,
+    handleClose: handleCloseAlert,
+  } = useAlert();
   const { createBook, updateBook, deleteBook } = ManageBooks();
 
   // Reset form handler
@@ -27,7 +32,7 @@ export default function Home() {
       title: '',
       author: '',
       year: '',
-      edition: ''
+      edition: '',
     });
     handleOpen();
   };
@@ -36,15 +41,12 @@ export default function Home() {
     <Container>
       <Box
         sx={{
-          display: "flex",
-          justifyContent: "center",
-          mb: 2
-        }}>
-        <Button
-          startIcon={<Add />}
-          variant='contained'
-          onClick={resetAndOpenForm}
-        >
+          display: 'flex',
+          justifyContent: 'center',
+          mb: 2,
+        }}
+      >
+        <Button startIcon={<Add />} variant='contained' onClick={resetAndOpenForm}>
           Add Book
         </Button>
       </Box>
@@ -69,11 +71,7 @@ export default function Home() {
         updateBook={updateBook}
       />
 
-      <BookNotifications
-        open={openAlert}
-        handleClose={handleCloseAlert}
-        alert={alert}
-      />
+      <BookNotifications open={openAlert} handleClose={handleCloseAlert} alert={alert} />
     </Container>
   );
 }
