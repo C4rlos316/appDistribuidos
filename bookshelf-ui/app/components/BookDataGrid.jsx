@@ -1,18 +1,27 @@
 "use client";
-import { Paper, Typography } from "@mui/material";
 import BookRowActions from "./BookRowActions";
 import { DataGrid } from "@mui/x-data-grid";
+import { Paper, Typography, Box } from "@mui/material";
 
+const BookDataGrid = ({ books, handleBook, handleOpen, deleteBook, handleOpenAlert, handleBooks }) => {
+  // Verificar datos antes de renderizar
+  console.log("BookDataGrid - Books:", books);
 
-const BookDataGrid = ({ books, handleBook, handleOpen }) => {
+  // Validar que todos los libros tengan ID
+  const validBooks = books.filter(book => book && book.id !== undefined);
+  if (validBooks.length !== books.length) {
+    console.warn("Se encontraron libros sin ID:", books.filter(book => !book || book.id === undefined));
+  }
 
   const renderActions = (params) =>
     <BookRowActions params={params}
       handleBook={handleBook}
-      handleOpen={handleOpen} />;
+      handleOpen={handleOpen}
+      deleteBook={deleteBook}
+      books={books}
+      handleBooks={handleBooks}
+      handleOpenAlert={handleOpenAlert} />;
 
-
-  //Esto se usa para dataGrid
   const columns = [
     { field: "id", headerName: "ID", width: 50 },
     { field: "title", headerName: "Title", flex: 2 },
@@ -20,11 +29,7 @@ const BookDataGrid = ({ books, handleBook, handleOpen }) => {
     { field: "year", headerName: "Year", flex: 1 },
     { field: "edition", headerName: "Edition", flex: 1 },
     {
-      field: "action",
-      headerName: "Action",
-      width: 150,
-      //esto lo puse de internet no se si esta bien
-      renderCell: renderActions,
+      field: "action", headerName: "Action", width: 150, renderCell: renderActions,
     },
   ];
 
@@ -32,14 +37,13 @@ const BookDataGrid = ({ books, handleBook, handleOpen }) => {
     <Paper sx={{ padding: 2, borderRadius: 2, margin: "0 auto", flexGrow: 1 }}>
       <DataGrid
         columns={columns}
-        rows={books}
-        initialState=
-        {{
+        rows={validBooks} // Solo usar libros válidos con ID
+        getRowId={(row) => row.id} // Asegurarse de que el ID sea usado correctamente
+        initialState={{
           pagination: { paginationModel: { page: 0, pageSize: 5 } },
         }}
         pageSizeOptions={[5, 10]}
-        sx=
-        {{
+        sx={{
           border: "1px solid #DDD",
           backgroundColor: "#F9F9F9",
           "& .MuiDataGrid-columnHeaderTitle": { fontWeight: "bold" },
@@ -54,7 +58,6 @@ const BookDataGrid = ({ books, handleBook, handleOpen }) => {
             </Box>
           )
         }}
-
       />
     </Paper>
   );

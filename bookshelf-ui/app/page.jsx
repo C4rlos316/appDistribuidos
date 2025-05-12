@@ -1,85 +1,79 @@
-
 'use client';
-import { Button, Container, Box } from "@mui/material";
+import { Button, Container, Box } from '@mui/material';
 import BookDataGrid from "./components/BookDataGrid";
-import { Add } from "@mui/icons-material"; // Also adding Add icon import
+import { Add } from "@mui/icons-material";
 
 import useBooks from "./hooks/useBooks";
-import useBook from "./hooks/useBook";  // Para manejar el libro individual
-import BookDialog from "./components/BookDialog"; // Add this import
+import useBook from "./hooks/useBook";
+import BookDialog from "./components/BookDialog";
 
 import useDialog from "./hooks/useDialog";
 import BookNotifications from "./components/BookNotifications";
 import useAlert from "./hooks/useAlert";
-import ManageBooks from "./services/ManageBooks"; // Import the ManageBooks service
+import ManageBooks from "./services/ManageBooks";
+
 export default function Home() {
   const { books, handleBooks } = useBooks();
-
   const { open, handleOpen, handleClose } = useDialog();
-
   const { book, handleBook } = useBook();
-
   const { open: openAlert, alert, handleAlert: handleOpenAlert, handleClose: handleCloseAlert } = useAlert();
+  const { createBook, updateBook, deleteBook } = ManageBooks();
 
-
-  const { updateBook } = ManageBooks(); // Ahora sí se ejecuta
+  // Reset form handler
+  const resetAndOpenForm = () => {
+    // Importante: usamos un objeto vacío con id explícitamente undefined
+    handleBook({
+      id: undefined,
+      title: '',
+      author: '',
+      year: '',
+      edition: ''
+    });
+    handleOpen();
+  };
 
   return (
-
     <Container>
-
       <Box
         sx={{
           display: "flex",
           justifyContent: "center",
           mb: 2
-
-
         }}>
-
         <Button
           startIcon={<Add />}
           variant='contained'
-          onClick={() => {
-            handleBook({
-              id: undefined,
-              title: '',
-              author: '',
-              year: '',
-              edition: ''
-            }); // Reset the book state
-            handleOpen();
-            //handleOpenAlert({ message: '', severity: '' });
-          }
-          }
-        > Add Book </Button>
-
+          onClick={resetAndOpenForm}
+        >
+          Add Book
+        </Button>
       </Box>
-      <BookDataGrid
 
+      <BookDataGrid
         books={books}
         handleBook={handleBook}
-        handleOpen={handleOpen} />;
-      <BookDialog open={open} handleClose={handleClose}
+        handleOpen={handleOpen}
+        handleOpenAlert={handleOpenAlert}
+        handleBooks={handleBooks}
+        deleteBook={deleteBook}
+      />
+
+      <BookDialog
+        open={open}
+        handleClose={handleClose}
         book={book}
         handleBook={handleBook}
         books={books}
         handleBooks={handleBooks}
         handleAlert={handleOpenAlert}
-        //createBook={createBook}
         updateBook={updateBook}
-
       />
-
 
       <BookNotifications
         open={openAlert}
         handleClose={handleCloseAlert}
         alert={alert}
       />
-
     </Container>
   );
-
-
 }
