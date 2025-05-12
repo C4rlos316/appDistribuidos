@@ -12,8 +12,7 @@ ENV NODE_ENV=production
 
 #copiar archivos de configuracion
 COPY --chown=nextjs:nodejs .next/standalone ./
-COPY --chown=nextjs:nodejs .next/static ./
-
+COPY --chown=nextjs:nodejs .next/static ./.next/static
 #podemos conmentar esta linea 
 COPY --chown=nextjs:nodejs public ./public
 
