@@ -66,7 +66,7 @@ export default function Contact() {
               </Grid2>
               <Grid2 size={{ xs: 12, md: 5 }}>
                 <Typography variant='h6' sx={{ mt: { xs: 1, md: 2 } }}>
-                  Contact Information
+                  Contact Information subido para saber si funciona
                 </Typography>
                 <List>
                   <ListItem>

@@ -2,9 +2,10 @@ FROM node:23.11.0-alpine3.21
 
 RUN apk add --no-cache curl 
 
+RUN apk update && apk add git
 RUN addgroup --system --gid 1001 nodejs
 RUN adduser --system --uid 1001 nextjs
-RUN apk update && apk add git
+
 
 
 WORKDIR /app 
