@@ -26,7 +26,7 @@ const ManageBooks = () => {
 
     handleBooks({ newBooks: updatedBooks });
     handleClose();
-    handleAlert({ message: 'Book updated successfully', severity: 'success' });
+    handleAlert({ message: 'Book updated successfully correct', severity: 'success' });
   };
 
   const deleteBook = ({ bookId, books, handleBooks, handleOpenAlert }) => {
