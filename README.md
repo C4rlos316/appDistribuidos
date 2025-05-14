@@ -5,6 +5,7 @@
 
 Esto se instala dentro del contenedor debes estar en la carpeta bookshelft-ui
 
+
 ```bash
 npm install --save-dev prettier
 ```
