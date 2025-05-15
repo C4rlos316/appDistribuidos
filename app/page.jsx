@@ -26,7 +26,7 @@ export default function Home() {
 
   // Reset form handler
   const resetAndOpenForm = () => {
-    // Importante: usamos un objeto vacío con id explícitamente undefined
+    // Importante: usamos un objeto vacío con id explícitamente undefined prueba
     handleBook({
       id: undefined,
       title: '',

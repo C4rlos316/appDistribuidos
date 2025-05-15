@@ -5,7 +5,7 @@ const useAlert = () => {
   const [alert, setAlert] = useState({
     message: '',
 
-    // Tipo de 4severity: critical | error | warning | info | debug
+    // Tipo de 4severity: critical | error | warning | info | debug prueba
     severity: '',
   });
 

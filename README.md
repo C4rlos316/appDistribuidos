@@ -2,7 +2,7 @@
 
 
 ## Instalar Prettier
-
+modifica cosas prueba
 Esto se instala dentro del contenedor debes estar en la carpeta bookshelft-ui
 
 
