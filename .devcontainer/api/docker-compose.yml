@@ -1,0 +1,14 @@
+services:
+  bookshelf-api:
+    container_name: bookshelf_api
+    image: python:3.13.3-alpine3.21
+    volumes:
+      - ../../..:/workspaces:cached
+    command: sleep infinity
+    ports:
+      - "8000:8000"
+    networks:
+      - bookshelf
+
+networks:
+  bookshelf:
