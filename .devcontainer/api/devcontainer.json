@@ -8,13 +8,17 @@
         "vscode": {}
     },
     "forwardPorts": [
-        8000
+        8000,
+        27017
     ],
     "portsAttributes": {
         "8000": {
             "label": "Fast API",
             "onAutoForward": "notify",
             "protocol": "http"
+        },
+        "27017": {
+            "label": "MongoDB"
         }
     },
     "postStartCommand": "cd /workspaces/app/.devcontainer/api && sh start.sh"

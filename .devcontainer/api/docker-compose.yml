@@ -1,3 +1,5 @@
+version: '3.9'
+
 services:
   bookshelf-api:
     container_name: bookshelf_api
@@ -7,6 +9,17 @@ services:
     command: sleep infinity
     ports:
       - "8000:8000"
+    networks:
+      - bookshelf
+
+  bookshelf-mongo:
+    container_name: bookshelf_mongo
+    image: mongo:8.0.9
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: admin
+    ports:
+      - "27017:27017"
     networks:
       - bookshelf
 
